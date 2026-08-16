@@ -1,0 +1,36 @@
+// Hero carousel slides
+export const HEROS = [
+  {
+    id: 'hero-0',
+    kicker: 'NUEVA TEMPORADA · 2026',
+    title: 'Flor de Sal',
+    text: 'Perlas de río y baño de oro 18k. La cápsula que abre el verano.',
+    bg: '#d99cb6',
+    overlay: 'rgba(170,33,89,0.35)',
+    textColor: '#fff',
+    titleColor: '#fff',
+    image: '/images/hero/flor-de-sal.webp',
+  },
+  {
+    id: 'hero-1',
+    kicker: 'EDICIÓN LIMITADA',
+    title: 'Noche Magenta',
+    text: 'Cristal facetado y engaste a mano. Solo 60 piezas numeradas.',
+    bg: '#7d0f3f',
+    overlay: 'rgba(35,22,28,0.4)',
+    textColor: '#fff',
+    titleColor: '#fff',
+    image: '/images/hero/noche-magenta.webp',
+  },
+  {
+    id: 'hero-2',
+    kicker: 'MANDRÁGORA NOVIOS',
+    title: 'Blanco y negro',
+    text: 'Tiaras, peinetas y aretes de velo. Una línea sin color.',
+    bg: '#1a1a1a',
+    overlay: 'rgba(0,0,0,0.45)',
+    textColor: '#fff',
+    titleColor: '#fff',
+    image: '/images/hero/novios.webp',
+  },
+];

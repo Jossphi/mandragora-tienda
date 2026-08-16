@@ -1,0 +1,106 @@
+/* ─── Design Tokens ─── */
+:root {
+  --accent:      #aa2159;
+  --accent-dark: #7d0f3f;
+  --accent-rose: #c23a72;
+  --dark:        #23161c;
+  --near-black:  #0c0c0c;
+  --bg:          #fdf8fa;
+  --rose:        #ecc0d1;
+  --rose-light:  #f0dde5;
+  --rose-pale:   #fdf3ec;
+  --text:        #23161c;
+  --text-muted:  #5a4450;
+  --text-light:  #8a7280;
+  --border:      #f0dde5;
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Jost', Helvetica, sans-serif;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+input, textarea { font-family: inherit; }
+
+/* ─── Keyframe Animations ─── */
+@keyframes mgMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes mgFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes mgReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes mgKen {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* ─── Utility Classes ─── */
+.serif { font-family: var(--font-serif); }
+.accent { color: var(--accent); }
+.letter-wide { letter-spacing: 0.24em; }
+.page-enter { animation: mgFade 0.4s ease both; }
+
+/* ─── Image Placeholder ─── */
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    135deg,
+    #f6e9ef,
+    #f6e9ef 10px,
+    #efd9e4 10px,
+    #efd9e4 20px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  color: #c08a9e;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+.img-placeholder.dark {
+  background: repeating-linear-gradient(
+    135deg,
+    #2a1e24,
+    #2a1e24 10px,
+    #231820 10px,
+    #231820 20px
+  );
+  color: #6a5060;
+}
+
+/* ─── Scroll-triggered Reveal ─── */
+.reveal {
+  animation: mgReveal 1ms linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 35%;
+}
