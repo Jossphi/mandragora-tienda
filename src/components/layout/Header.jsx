@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
 import ImageSlot from '../ui/ImageSlot';
 import { COLLECTIONS, MEGA_JOYERIA_A, MEGA_JOYERIA_B, MEGA_COLECCIONES_A, MEGA_COLECCIONES_B } from '../../data/collections';
 
 export default function Header({ cartCount, onNavigate }) {
   const [megaMenu, setMegaMenu] = useState(null); // null | 'joyeria' | 'colecciones'
+  const { user } = useAuth();
 
   const navLink = (page, label, color = '#23161c') => (
     <a
@@ -110,6 +112,17 @@ export default function Header({ cartCount, onNavigate }) {
           >
             NOSOTROS
           </a>
+          
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); onNavigate(user ? 'account' : 'login'); setMegaMenu(null); }}
+            style={{ color: '#23161c', whiteSpace: 'nowrap', transition: 'color 200ms' }}
+            onMouseOver={e => e.currentTarget.style.color = '#aa2159'}
+            onMouseOut={e => e.currentTarget.style.color = '#23161c'}
+          >
+            {user ? user.user_metadata?.full_name?.split(' ')[0].toUpperCase() || 'CUENTA' : 'LOGIN'}
+          </a>
+
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); }}

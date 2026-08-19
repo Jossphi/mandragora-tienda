@@ -1,7 +1,9 @@
-import { NOVIOS } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/shop/ProductCard';
 
 export default function NoviosPage({ onAddToCart, onNavigate }) {
+  const { products: novios, loading } = useProducts({ isNovios: true });
+
   return (
     <main className="page-enter" style={{ background: '#0c0c0c', color: '#fff' }}>
       {/* Hero section */}
@@ -34,11 +36,15 @@ export default function NoviosPage({ onAddToCart, onNavigate }) {
 
       {/* Products 3-column */}
       <section style={{ maxWidth: 1440, margin: '0 auto', padding: '80px 40px 0' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 30 }}>
-          {NOVIOS.map((n) => (
-            <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} onNavigate={onNavigate} dark />
-          ))}
-        </div>
+        {loading ? (
+          <p style={{ textAlign: 'center', color: '#888' }}>Cargando catálogo nupcial...</p>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 30 }}>
+            {novios.map((n) => (
+              <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} onNavigate={onNavigate} dark />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Asesoría CTA */}

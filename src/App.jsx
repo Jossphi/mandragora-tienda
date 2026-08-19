@@ -12,6 +12,7 @@ import NoviosPage from './pages/NoviosPage';
 import NosotrosPage from './pages/NosotrosPage';
 import ContactoPage from './pages/ContactoPage';
 import ProductPage from './pages/ProductPage';
+import LoginPage from './pages/LoginPage';
 
 export default function App() {
   const [page, setPage] = useState('home');
@@ -38,6 +39,8 @@ export default function App() {
         return <NosotrosPage />;
       case 'contacto':
         return <ContactoPage />;
+      case 'login':
+        return <LoginPage onNavigate={navigate} />;
       default:
         if (page.startsWith('product/')) {
           const productId = page.split('/')[1];

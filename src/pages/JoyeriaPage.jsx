@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { PRODUCTS } from '../data/products';
+import { useProducts } from '../hooks/useProducts';
 import FilterBar from '../components/shop/FilterBar';
 import ProductCard from '../components/shop/ProductCard';
 
 export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false }) {
   const [filtro, setFiltro] = useState('TODO');
+  const { products: visible, loading } = useProducts({ isSale, category: filtro });
 
-  const base = isSale ? PRODUCTS.filter((p) => p.tag === 'SALE') : PRODUCTS;
-  const visible = filtro === 'TODO' ? base : base.filter((p) => p.cat === filtro);
   const title = isSale ? 'Sale' : 'Joyería';
 
   return (
@@ -38,12 +37,15 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false })
 
       <FilterBar active={filtro} onChange={setFiltro} />
 
-      {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
-        {visible.map((p) => (
-          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
-        ))}
-      </div>
+      {loading ? (
+        <p style={{ textAlign: 'center', marginTop: 40, color: '#aa2159', fontSize: 14 }}>Cargando catálogo...</p>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
+          {visible.map((p) => (
+            <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
+          ))}
+        </div>
+      )}
     </main>
   );
 }

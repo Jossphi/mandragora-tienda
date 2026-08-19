@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { PRODUCTS, TABS, TAB_FILTERS } from '../../data/products';
+import { useProducts } from '../../hooks/useProducts';
+import { TABS, TAB_FILTERS } from '../../data/products';
 import ProductCard from '../shop/ProductCard';
 
 export default function ProductTabs({ onNavigate, onAddToCart }) {
   const [tab, setTab] = useState(0);
-  const products = PRODUCTS.filter(TAB_FILTERS[tab]);
+  const { products: allProducts, loading } = useProducts();
+  
+  // Apply local filtering for tabs
+  const products = allProducts.filter(TAB_FILTERS[tab]);
 
   return (
     <section style={{ maxWidth: 1440, margin: '0 auto', padding: '70px 40px 0' }}>
@@ -34,11 +38,15 @@ export default function ProductTabs({ onNavigate, onAddToCart }) {
       </div>
 
       {/* Products grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
-        ))}
-      </div>
+      {loading ? (
+        <p style={{ textAlign: 'center', color: '#aa2159', fontSize: 14 }}>Cargando catálogo...</p>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
+          {products.slice(0, 4).map((p) => (
+            <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
+          ))}
+        </div>
+      )}
 
       {/* Ver todo link */}
       <div style={{ textAlign: 'center', marginTop: 44 }}>

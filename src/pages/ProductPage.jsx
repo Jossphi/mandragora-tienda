@@ -1,10 +1,18 @@
 import { useState } from 'react';
-import { getProductById } from '../data/products';
+import { useProduct } from '../hooks/useProducts';
 import ImageSlot from '../components/ui/ImageSlot';
 
 export default function ProductPage({ productId, onAddToCart, onNavigate }) {
   const [qty, setQty] = useState(1);
-  const product = getProductById(productId);
+  const { product, loading } = useProduct(productId);
+
+  if (loading) {
+    return (
+      <main className="page-enter" style={{ padding: '100px 40px', textAlign: 'center' }}>
+        <h2 style={{ color: '#888', fontWeight: 300 }}>Cargando detalles de la joya...</h2>
+      </main>
+    );
+  }
 
   if (!product) {
     return (
