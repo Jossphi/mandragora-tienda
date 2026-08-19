@@ -60,10 +60,11 @@ export default function HeroCarousel({ autoplay = true }) {
         <div
           style={{
             textAlign: 'center',
-            padding: '72px 56px 40px',
+            padding: 'clamp(32px, 5vw, 72px) clamp(24px, 5vw, 56px)',
             animation: 'mgFade 0.7s ease both',
             pointerEvents: 'auto',
             background: 'rgba(10,6,8,0.94)',
+            maxWidth: '90%',
           }}
           key={current}
         >
@@ -74,7 +75,7 @@ export default function HeroCarousel({ autoplay = true }) {
             style={{
               fontFamily: 'var(--font-serif)',
               fontWeight: 500,
-              fontSize: 72,
+              fontSize: 'clamp(42px, 8vw, 72px)',
               lineHeight: 0.9,
               margin: '0 0 18px',
               letterSpacing: '-0.01em',

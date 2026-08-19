@@ -71,6 +71,7 @@ export default function Footer({ onNavigate }) {
         }}
       >
         <div
+          className="footer-grid"
           style={{
             maxWidth: 1440,
             margin: '0 auto',
@@ -115,6 +116,7 @@ export default function Footer({ onNavigate }) {
 
         {/* Bottom bar */}
         <div
+          className="mobile-flex-col"
           style={{
             maxWidth: 1440,
             margin: '46px auto 0',
@@ -122,6 +124,8 @@ export default function Footer({ onNavigate }) {
             borderTop: '1px solid #f0dde5',
             display: 'flex',
             justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 20,
             fontSize: 11,
             letterSpacing: '0.14em',
             color: '#8a7280',

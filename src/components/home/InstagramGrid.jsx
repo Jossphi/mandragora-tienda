@@ -19,7 +19,7 @@ export default function InstagramGrid() {
         @mandragora.peru
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 14 }}>
+      <div className="insta-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 14 }}>
         {INSTAGRAM.map((ig) => (
           <a
             key={ig.id}

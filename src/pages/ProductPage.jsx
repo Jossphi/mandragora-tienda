@@ -51,6 +51,7 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
       }}
     >
       <div 
+        className="product-detail-grid"
         style={{ 
           maxWidth: 1200, 
           margin: '0 auto', 

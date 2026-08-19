@@ -39,7 +39,7 @@ export default function NoviosPage({ onAddToCart, onNavigate }) {
         {loading ? (
           <p style={{ textAlign: 'center', color: '#888' }}>Cargando catálogo nupcial...</p>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 30 }}>
+          <div className="grid-cols-3">
             {novios.map((n) => (
               <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} onNavigate={onNavigate} dark />
             ))}

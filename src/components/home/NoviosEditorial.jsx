@@ -4,7 +4,7 @@ export default function NoviosEditorial({ onNavigate }) {
   return (
     <section style={{ background: '#0c0c0c', color: '#fff', padding: '96px 40px' }}>
       <div
-        className="reveal"
+        className="reveal banners-grid"
         style={{
           maxWidth: 1440,
           margin: '0 auto',
@@ -33,7 +33,7 @@ export default function NoviosEditorial({ onNavigate }) {
             style={{
               fontFamily: 'var(--font-serif)',
               fontWeight: 300,
-              fontSize: 68,
+              fontSize: 'clamp(40px, 6vw, 68px)',
               lineHeight: 1.02,
               margin: '20px 0 22px',
               letterSpacing: '0.02em',

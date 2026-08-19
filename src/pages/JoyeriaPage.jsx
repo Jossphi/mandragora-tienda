@@ -40,7 +40,7 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false })
       {loading ? (
         <p style={{ textAlign: 'center', marginTop: 40, color: '#aa2159', fontSize: 14 }}>Cargando catálogo...</p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
+        <div className="grid-cols-4">
           {visible.map((p) => (
             <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
           ))}

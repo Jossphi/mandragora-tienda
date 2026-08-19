@@ -5,6 +5,7 @@ import { COLLECTIONS, MEGA_JOYERIA_A, MEGA_JOYERIA_B, MEGA_COLECCIONES_A, MEGA_C
 
 export default function Header({ cartCount, onNavigate }) {
   const [megaMenu, setMegaMenu] = useState(null); // null | 'joyeria' | 'colecciones'
+  const [mobileMenu, setMobileMenu] = useState(false);
   const { user } = useAuth();
 
   const navLink = (page, label, color = '#23161c') => (
@@ -61,8 +62,8 @@ export default function Header({ cartCount, onNavigate }) {
           gap: 14,
         }}
       >
-        {/* Left nav */}
-        <nav style={{ display: 'flex', gap: 'clamp(12px, 1.5vw, 26px)', alignItems: 'center', flexWrap: 'wrap' }}>
+        {/* Left nav (Desktop) / Hamburger (Mobile) */}
+        <nav className="hide-on-mobile" style={{ display: 'flex', gap: 'clamp(12px, 1.5vw, 26px)', alignItems: 'center', flexWrap: 'wrap' }}>
           {navLink('joyeria', 'JOYERÍA')}
           {navLink('colecciones', 'COLECCIONES')}
           {navLink('novios', 'NOVIOS')}
@@ -75,6 +76,14 @@ export default function Header({ cartCount, onNavigate }) {
             SALE
           </a>
         </nav>
+        <div className="show-on-mobile">
+          <button 
+            onClick={() => setMobileMenu(!mobileMenu)}
+            style={{ fontSize: 24, background: 'none', border: 'none', color: '#23161c', padding: '0 8px' }}
+          >
+            ☰
+          </button>
+        </div>
 
         {/* Logo (center) */}
         <a
@@ -105,6 +114,7 @@ export default function Header({ cartCount, onNavigate }) {
         <div style={{ display: 'flex', gap: 'clamp(10px, 1.4vw, 22px)', justifyContent: 'flex-end', alignItems: 'center', fontSize: '11.5px', letterSpacing: '0.14em', flexWrap: 'wrap' }}>
           <a
             href="#"
+            className="hide-on-mobile"
             onClick={(e) => { e.preventDefault(); onNavigate('nosotros'); setMegaMenu(null); }}
             style={{ color: '#23161c', whiteSpace: 'nowrap', transition: 'color 200ms' }}
             onMouseOver={e => e.currentTarget.style.color = '#aa2159'}
@@ -115,6 +125,7 @@ export default function Header({ cartCount, onNavigate }) {
           
           <a
             href="#"
+            className="hide-on-mobile"
             onClick={(e) => { e.preventDefault(); onNavigate(user ? 'account' : 'login'); setMegaMenu(null); }}
             style={{ color: '#23161c', whiteSpace: 'nowrap', transition: 'color 200ms' }}
             onMouseOver={e => e.currentTarget.style.color = '#aa2159'}
@@ -219,6 +230,23 @@ export default function Header({ cartCount, onNavigate }) {
                 </a>
               ))}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenu && (
+        <div className="show-on-mobile" style={{
+          position: 'fixed', top: 82, left: 0, right: 0, bottom: 0, background: '#fff', zIndex: 50, padding: 40, animation: 'mgFade 0.2s ease both'
+        }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontSize: 16, letterSpacing: '0.1em' }}>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('joyeria'); setMobileMenu(false); }}>JOYERÍA</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); setMobileMenu(false); }}>COLECCIONES</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('novios'); setMobileMenu(false); }}>NOVIOS</a>
+            <a href="#" style={{ color: '#aa2159' }} onClick={(e) => { e.preventDefault(); onNavigate('sale'); setMobileMenu(false); }}>SALE</a>
+            <hr style={{ border: 'none', borderTop: '1px solid #eee' }} />
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('nosotros'); setMobileMenu(false); }}>NOSOTROS</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(user ? 'account' : 'login'); setMobileMenu(false); }}>{user ? 'MI CUENTA' : 'LOGIN'}</a>
           </div>
         </div>
       )}

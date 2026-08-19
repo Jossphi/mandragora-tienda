@@ -104,3 +104,67 @@ input, textarea { font-family: inherit; }
   animation-timeline: view();
   animation-range: entry 0% entry 35%;
 }
+
+/* ─── Responsive Grid Layouts ─── */
+.grid-cols-4, .grid-cols-3, .grid-cols-2 {
+  display: grid;
+  gap: 26px;
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Base styles for responsive padding */
+.section-padding {
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+/* ─── Media Queries (Mobile First approach overrides) ─── */
+@media (max-width: 1024px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-cols-4, .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* Specific mobile overrides */
+  .hide-on-mobile { display: none !important; }
+  .show-on-mobile { display: block !important; }
+  
+  /* Flex wrap for header navs */
+  .mobile-flex-col { flex-direction: column !important; }
+  
+  /* Product Detail specific */
+  .product-detail-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+  
+  /* Banners Section */
+  .banners-grid { grid-template-columns: 1fr !important; }
+  
+  /* Instagram grid */
+  .insta-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 8px !important; }
+  
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+}
+
+@media (max-width: 480px) {
+  .insta-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+.show-on-mobile { display: none; }
+@media (max-width: 768px) { .show-on-mobile { display: block !important; } .hide-on-mobile { display: none !important; } }

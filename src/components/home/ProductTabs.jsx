@@ -41,7 +41,7 @@ export default function ProductTabs({ onNavigate, onAddToCart }) {
       {loading ? (
         <p style={{ textAlign: 'center', color: '#aa2159', fontSize: 14 }}>Cargando catálogo...</p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
+        <div className="grid-cols-4">
           {products.slice(0, 4).map((p) => (
             <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
           ))}

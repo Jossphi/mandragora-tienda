@@ -20,7 +20,7 @@ export default function CollectionsGrid({ onNavigate }) {
         Últimas colecciones
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 26 }}>
+      <div className="grid-cols-3">
         {COLLECTIONS.slice(0, 3).map((col) => (
           <CollectionItem key={col.id} col={col} onNavigate={onNavigate} />
         ))}
