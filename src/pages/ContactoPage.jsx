@@ -78,7 +78,7 @@ export default function ContactoPage() {
             ATELIER
           </div>
           Av. La Mar 1234, Miraflores<br />
-          Lima, Perú<br /><br />
+          Perú<br /><br />
 
           <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#aa2159', marginBottom: 14 }}>
             HORARIO

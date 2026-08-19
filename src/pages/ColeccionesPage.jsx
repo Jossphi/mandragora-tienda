@@ -9,7 +9,7 @@ export default function ColeccionesPage({ onNavigate }) {
         Colecciones
       </h1>
       <p style={{ fontSize: 14, color: '#5a4450', fontWeight: 300, margin: '0 0 44px', maxWidth: 560 }}>
-        Cada cápsula nace de una flor, una piedra o una noche de Lima. Ediciones cortas, numeradas y hechas a mano.
+        Cada cápsula nace de una flor, una piedra o una noche de Perú. Ediciones cortas, numeradas y hechas a mano.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 30 }}>

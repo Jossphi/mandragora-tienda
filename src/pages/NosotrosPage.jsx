@@ -8,7 +8,7 @@ export default function NosotrosPage() {
         Sobre Mandrágora
       </h1>
       <p style={{ fontSize: 16, lineHeight: 1.9, color: '#4a3742', fontWeight: 300, maxWidth: 640 }}>
-        Nacimos en un taller pequeño de Lima con una idea simple: bijouterie que no parezca bijouterie. Diseñamos series cortas, trabajamos con artesanas peruanas y cuidamos cada engaste como si fuera oro fino.
+        Nacimos en un taller pequeño de Perú con una idea simple: bijouterie que no parezca bijouterie. Diseñamos series cortas, trabajamos con artesanas peruanas y cuidamos cada engaste como si fuera oro fino.
       </p>
 
       {/* Taller photo */}

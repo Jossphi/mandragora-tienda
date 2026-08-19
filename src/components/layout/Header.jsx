@@ -97,7 +97,7 @@ export default function Header({ cartCount, onNavigate }) {
             MANDRÁGORA
           </div>
           <div style={{ fontSize: '8.5px', letterSpacing: '0.42em', color: '#aa2159', marginTop: 5, paddingLeft: '0.42em' }}>
-            BIJOUTERIE · LIMA
+            BIJOUTERIE · PERÚ
           </div>
         </a>
 

@@ -85,7 +85,7 @@ export default function Footer({ onNavigate }) {
               MANDRÁGORA
             </div>
             <p style={{ fontSize: '12.5px', lineHeight: 1.9, color: '#6b5460', fontWeight: 300, margin: '14px 0 0', maxWidth: 260 }}>
-              Bijouterie hecha a mano en Lima. Baño de oro 18k, perla de río y cristal.
+              Bijouterie hecha a mano en Perú. Baño de oro 18k, perla de río y cristal.
             </p>
           </div>
 

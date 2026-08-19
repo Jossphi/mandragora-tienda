@@ -1,11 +1,11 @@
 export default function MarqueeSection({ onNavigate }) {
   const items = [
     { type: 'title', text: 'Mandrágora' },
-    { type: 'sub',   text: 'BIJOUTERIE · LIMA' },
+    { type: 'sub',   text: 'BIJOUTERIE · PERÚ' },
     { type: 'title', text: 'Joyas con alma' },
     { type: 'sub',   text: 'HECHO A MANO ✦' },
     { type: 'title', text: 'Mandrágora' },
-    { type: 'sub',   text: 'BIJOUTERIE · LIMA' },
+    { type: 'sub',   text: 'BIJOUTERIE · PERÚ' },
     { type: 'title', text: 'Joyas con alma' },
     { type: 'sub',   text: 'HECHO A MANO ✦' },
   ];

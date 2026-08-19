@@ -10,7 +10,7 @@ export default function BrandStatement({ onNavigate }) {
       }}
     >
       <div style={{ fontSize: '10.5px', letterSpacing: '0.4em', color: '#7d0f3f' }}>
-        HECHO A MANO EN LIMA
+        HECHO A MANO EN PERÚ
       </div>
       <h2
         style={{

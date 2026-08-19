@@ -7,7 +7,7 @@ const makeProduct = (id, name, price, cat, tag, image, desc, stock) => ({
   cat,
   tag,
   image: image || `/images/products/${id}.webp`,
-  description: desc || 'Pieza elaborada artesanalmente en nuestro taller de Lima. Baño de oro 18k sobre bronce, resistente y diseñada para durar. Cada engaste es realizado a mano para asegurar la máxima calidad.',
+  description: desc || 'Pieza elaborada artesanalmente en nuestro taller de Perú. Baño de oro 18k sobre bronce, resistente y diseñada para durar. Cada engaste es realizado a mano para asegurar la máxima calidad.',
   stock: stock ?? Math.floor(Math.random() * 8) + 2,
 });
 
