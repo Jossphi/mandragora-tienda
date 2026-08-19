@@ -3,7 +3,7 @@ import { PRODUCTS } from '../data/products';
 import FilterBar from '../components/shop/FilterBar';
 import ProductCard from '../components/shop/ProductCard';
 
-export default function JoyeriaPage({ onAddToCart, isSale = false }) {
+export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false }) {
   const [filtro, setFiltro] = useState('TODO');
 
   const base = isSale ? PRODUCTS.filter((p) => p.tag === 'SALE') : PRODUCTS;
@@ -41,7 +41,7 @@ export default function JoyeriaPage({ onAddToCart, isSale = false }) {
       {/* Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
         {visible.map((p) => (
-          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} />
+          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
         ))}
       </div>
     </main>

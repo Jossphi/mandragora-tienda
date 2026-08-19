@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ImageSlot from '../ui/ImageSlot';
 
-export default function ProductCard({ product, onAddToCart, dark = false }) {
+export default function ProductCard({ product, onAddToCart, onNavigate, dark = false }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -17,8 +17,14 @@ export default function ProductCard({ product, onAddToCart, dark = false }) {
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image wrapper */}
-      <div
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          if (onNavigate) onNavigate(`product/${product.id}`);
+        }}
         style={{
+          display: 'block',
           position: 'relative',
           aspectRatio: '3/4',
           overflow: 'hidden',
@@ -75,12 +81,24 @@ export default function ProductCard({ product, onAddToCart, dark = false }) {
         >
           AÑADIR AL CARRITO
         </button>
-      </div>
+      </a>
 
       {/* Name */}
-      <div style={{ fontSize: 12, letterSpacing: '0.12em', color: dark ? '#e6e6e6' : 'var(--text)' }}>
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          if (onNavigate) onNavigate(`product/${product.id}`);
+        }}
+        style={{
+          display: 'block',
+          fontSize: 12,
+          letterSpacing: '0.12em',
+          color: dark ? '#e6e6e6' : 'var(--text)'
+        }}
+      >
         {product.name}
-      </div>
+      </a>
 
       {/* Price */}
       <div

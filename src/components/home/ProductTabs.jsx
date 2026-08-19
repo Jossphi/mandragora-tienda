@@ -36,7 +36,7 @@ export default function ProductTabs({ onNavigate, onAddToCart }) {
       {/* Products grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 26 }}>
         {products.map((p) => (
-          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} />
+          <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} onNavigate={onNavigate} />
         ))}
       </div>
 

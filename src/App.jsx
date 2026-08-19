@@ -11,6 +11,7 @@ import ColeccionesPage from './pages/ColeccionesPage';
 import NoviosPage from './pages/NoviosPage';
 import NosotrosPage from './pages/NosotrosPage';
 import ContactoPage from './pages/ContactoPage';
+import ProductPage from './pages/ProductPage';
 
 export default function App() {
   const [page, setPage] = useState('home');
@@ -26,9 +27,9 @@ export default function App() {
       case 'home':
         return <HomePage onNavigate={navigate} onAddToCart={addToCart} />;
       case 'joyeria':
-        return <JoyeriaPage onAddToCart={addToCart} />;
+        return <JoyeriaPage onAddToCart={addToCart} onNavigate={navigate} />;
       case 'sale':
-        return <JoyeriaPage onAddToCart={addToCart} isSale />;
+        return <JoyeriaPage onAddToCart={addToCart} onNavigate={navigate} isSale />;
       case 'colecciones':
         return <ColeccionesPage onNavigate={navigate} />;
       case 'novios':
@@ -38,6 +39,10 @@ export default function App() {
       case 'contacto':
         return <ContactoPage />;
       default:
+        if (page.startsWith('product/')) {
+          const productId = page.split('/')[1];
+          return <ProductPage productId={productId} onAddToCart={addToCart} onNavigate={navigate} />;
+        }
         return <HomePage onNavigate={navigate} onAddToCart={addToCart} />;
     }
   };

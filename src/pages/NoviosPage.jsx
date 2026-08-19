@@ -36,7 +36,7 @@ export default function NoviosPage({ onAddToCart, onNavigate }) {
       <section style={{ maxWidth: 1440, margin: '0 auto', padding: '80px 40px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 30 }}>
           {NOVIOS.map((n) => (
-            <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} dark />
+            <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} onNavigate={onNavigate} dark />
           ))}
         </div>
       </section>
