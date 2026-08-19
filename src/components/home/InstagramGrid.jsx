@@ -16,7 +16,7 @@ export default function InstagramGrid() {
           margin: '14px 0 40px',
         }}
       >
-        @mandragora.bijou
+        @mandragora.peru
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 14 }}>
