@@ -1,7 +1,7 @@
 export default function AnnouncementBar() {
   const items = [
     '✦ TIENDA OFICIAL MANDRÁGORA ✦',
-    'ENVÍOS GRATIS DESDE S/ 199',
+    'ENVÍOS GRATIS DESDE S/ 300',
     '3 CUOTAS SIN INTERESES',
     'NUEVA COLECCIÓN NOVIOS',
   ];
