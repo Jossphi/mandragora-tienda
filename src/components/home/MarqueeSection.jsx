@@ -1,4 +1,4 @@
-export default function MarqueeSection({ onNavigate }) {
+export default function MarqueeSection() {
   const items = [
     { type: 'title', text: 'Mandrágora' },
     { type: 'sub',   text: 'BIJOUTERIE · PERÚ' },
@@ -53,30 +53,6 @@ export default function MarqueeSection({ onNavigate }) {
         )}
       </div>
 
-      {/* CTA button */}
-      <button
-        onClick={() => onNavigate('joyeria')}
-        style={{
-          position: 'absolute',
-          right: 40,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          background: '#0c0c0c',
-          color: '#fff',
-          padding: '13px 30px',
-          fontSize: '10.5px',
-          letterSpacing: '0.24em',
-          border: 'none',
-          cursor: 'pointer',
-          fontFamily: 'var(--font-sans)',
-          transition: 'background 300ms',
-          zIndex: 1,
-        }}
-        onMouseOver={e => e.currentTarget.style.background = '#23161c'}
-        onMouseOut={e => e.currentTarget.style.background = '#0c0c0c'}
-      >
-        COMPRAR AHORA
-      </button>
     </section>
   );
 }

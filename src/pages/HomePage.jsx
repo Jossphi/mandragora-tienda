@@ -10,10 +10,10 @@ import InstagramGrid from '../components/home/InstagramGrid';
 export default function HomePage({ onNavigate, onAddToCart }) {
   return (
     <main>
-      <HeroCarousel />
+      <HeroCarousel onNavigate={onNavigate} />
       <CategoryGrid onNavigate={onNavigate} />
       <ProductTabs onNavigate={onNavigate} onAddToCart={onAddToCart} />
-      <MarqueeSection onNavigate={onNavigate} />
+      <MarqueeSection />
       <BrandStatement onNavigate={onNavigate} />
       <NoviosEditorial onNavigate={onNavigate} />
       <CollectionsGrid onNavigate={onNavigate} />

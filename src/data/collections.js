@@ -1,44 +1,48 @@
 export const COLLECTIONS = [
   {
-    id: 'flor-de-sal',
-    label: 'Flor de Sal',
-    desc: 'Perla de río y baño de oro 18k.',
-    image: '/images/collections/flor-de-sal.webp',
-    megaImage: '/images/collections/flor-de-sal-mega.webp',
-    megaLabel: 'FLOR DE SAL',
+    id: 'amanecer',
+    label: 'Amanecer',
+    desc: 'Aretes Aurora, Aretes Brisa y Collar Luz Suave. Colores personalizables.',
+    image: '/images/collections/amanecer.webp',
+    megaImage: '/images/collections/amanecer.webp',
+    megaLabel: 'AMANECER',
+    page: 'coleccion/Amanecer',
   },
   {
-    id: 'noche-magenta',
-    label: 'Noche Magenta',
-    desc: 'Cristal facetado, 60 piezas.',
-    image: '/images/collections/noche-magenta.webp',
-    megaImage: '/images/collections/noche-magenta-mega.webp',
-    megaLabel: 'NOCHE MAGENTA',
+    id: 'plenitud',
+    label: 'Plenitud',
+    desc: 'Aretes Vital, Pulsera Sol de Verano y Collar Fulgor.',
+    image: '/images/collections/plenitud.webp',
+    megaImage: '/images/collections/plenitud.webp',
+    megaLabel: 'PLENITUD',
+    page: 'coleccion/Plenitud',
   },
   {
-    id: 'camelia',
-    label: 'Camelia',
-    desc: 'Sets para regalar.',
-    image: '/images/collections/camelia.webp',
-    megaImage: '/images/collections/novios-mega.webp',
-    megaLabel: 'NOVIOS',
+    id: 'ocaso',
+    label: 'Ocaso',
+    desc: 'Aretes Eterna, Gargantilla Misterio y Pulsera Origen.',
+    image: '/images/collections/ocaso.webp',
+    megaImage: '/images/collections/ocaso.webp',
+    megaLabel: 'OCASO',
+    page: 'coleccion/Ocaso',
   },
   {
-    id: 'novios',
-    label: 'Novios',
-    desc: 'Línea nupcial en blanco y negro.',
-    image: '/images/collections/novios.webp',
+    id: 'novias',
+    label: 'Novias',
+    desc: 'Peinetas, tocados y chokers de perla personalizados.',
+    image: '/images/collections/novias.webp',
     megaImage: null,
     megaLabel: '',
+    page: 'novios',
   },
 ];
 
 // Mega menu nav items
-export const MEGA_JOYERIA_A = ['ARETES', 'COLLARES', 'PULSERAS', 'ANILLOS', 'SETS', 'VER TODO'];
-export const MEGA_JOYERIA_B = ['NUEVO IN', 'MÁS VENDIDOS', 'ÚLTIMAS UNIDADES', 'NOVIOS', 'SALE'];
+export const MEGA_JOYERIA_A = ['ARETES', 'COLLARES', 'CHOKERS', 'PULSERAS', 'SETS', 'VER TODO'];
+export const MEGA_JOYERIA_B = ['DIADEMAS', 'NIÑOS Y BEBÉS', 'HOMBRE', 'JOYEROS', 'REGALOS', 'SALE'];
 
-export const MEGA_COLECCIONES_A = ['FLOR DE SAL', 'NOCHE MAGENTA', 'CAMELIA', 'PERLA DE RÍO', 'VER TODO'];
-export const MEGA_COLECCIONES_B = ['FIESTA', 'OFICINA', 'NOVIOS', 'REGALO', 'GIFT CARD'];
+export const MEGA_COLECCIONES_A = ['AMANECER', 'PLENITUD', 'OCASO', 'NOVIAS', 'VER TODO'];
+export const MEGA_COLECCIONES_B = ['CALENDARIO SORPRESA', 'SETS PARA PAREJAS', 'REGALOS', 'SALE'];
 
 // Footer columns
 export const FOOTER_COLS = [

@@ -9,10 +9,10 @@ export default function ColeccionesPage({ onNavigate }) {
         Colecciones
       </h1>
       <p style={{ fontSize: 14, color: '#5a4450', fontWeight: 300, margin: '0 0 44px', maxWidth: 560 }}>
-        Cada cápsula nace de una flor, una piedra o una noche de Perú. Ediciones cortas, numeradas y hechas a mano.
+        Eterna Mandrágora recorre un día completo en tres cápsulas: Amanecer, Plenitud y Ocaso. Piezas hechas a mano, de color personalizable.
       </p>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 30 }}>
+      <div className="grid-cols-2" style={{ gap: 30 }}>
         {COLLECTIONS.map((col) => (
           <CollectionCard key={col.id} col={col} onNavigate={onNavigate} />
         ))}
@@ -27,7 +27,7 @@ function CollectionCard({ col, onNavigate }) {
   return (
     <a
       href="#"
-      onClick={(e) => { e.preventDefault(); onNavigate('joyeria'); }}
+      onClick={(e) => { e.preventDefault(); onNavigate(col.page); }}
       style={{ display: 'block', color: '#23161c' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

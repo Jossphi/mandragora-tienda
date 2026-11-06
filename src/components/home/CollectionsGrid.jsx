@@ -17,7 +17,7 @@ export default function CollectionsGrid({ onNavigate }) {
           margin: '0 0 46px',
         }}
       >
-        Últimas colecciones
+        Eterna Mandrágora
       </h2>
 
       <div className="grid-cols-3">
@@ -35,14 +35,14 @@ function CollectionItem({ col, onNavigate }) {
   return (
     <a
       href="#"
-      onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); }}
+      onClick={(e) => { e.preventDefault(); onNavigate(col.page); }}
       style={{ display: 'block', color: '#23161c' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div
         style={{
-          aspectRatio: '3/4',
+          aspectRatio: '4/5',
           transform: hovered ? 'translateY(-8px)' : 'none',
           boxShadow: hovered ? '0 22px 44px rgba(170,33,89,0.16)' : 'none',
           transition: 'transform 400ms ease, box-shadow 400ms ease',
@@ -60,7 +60,10 @@ function CollectionItem({ col, onNavigate }) {
           marginTop: 14,
         }}
       >
-        <span style={{ fontFamily: 'var(--font-serif)', fontSize: 24 }}>{col.label}</span>
+        <span>
+          <span style={{ fontFamily: 'var(--font-serif)', fontSize: 26, display: 'block' }}>{col.label}</span>
+          <span style={{ fontSize: 12.5, color: '#5a4450', fontWeight: 300 }}>{col.desc}</span>
+        </span>
         <span style={{ fontSize: '10.5px', letterSpacing: '0.2em', color: '#aa2159' }}>VER →</span>
       </div>
     </a>
