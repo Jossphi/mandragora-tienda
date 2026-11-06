@@ -1,10 +1,18 @@
-import { useState } from 'react';
-import { useProduct } from '../hooks/useProducts';
+import { useState, useEffect } from 'react';
+import { useProduct, formatPrice } from '../hooks/useProducts';
 import ImageSlot from '../components/ui/ImageSlot';
 
 export default function ProductPage({ productId, onAddToCart, onNavigate }) {
   const [qty, setQty] = useState(1);
+  const [variantIdx, setVariantIdx] = useState(0);
+  const [activeImage, setActiveImage] = useState(null);
   const { product, loading } = useProduct(productId);
+
+  useEffect(() => {
+    setQty(1);
+    setVariantIdx(0);
+    setActiveImage(null);
+  }, [productId]);
 
   if (loading) {
     return (
@@ -37,9 +45,24 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
   }
 
   const dark = product.isNovios;
+  const variants = product.variants || [];
+  const hasChoice = variants.length > 1;
+  const variant = variants[variantIdx] || null;
+  const stock = variant ? variant.stock : product.stock;
+  const modifier = variant ? variant.priceModifier : 0;
+  const price = formatPrice(product.priceNum + modifier);
+  const compareAt = product.compareAtNum != null ? formatPrice(product.compareAtNum + modifier) : null;
+  const mainImage = activeImage || (variant && variant.image) || product.image;
+  const images = product.images || [];
+
+  const selectVariant = (i) => {
+    setVariantIdx(i);
+    setActiveImage(variants[i].image || null);
+    setQty(1);
+  };
 
   const handleMinus = () => setQty((q) => Math.max(1, q - 1));
-  const handlePlus = () => setQty((q) => Math.min(product.stock, q + 1));
+  const handlePlus = () => setQty((q) => Math.min(Math.max(stock, 1), q + 1));
 
   return (
     <main 
@@ -65,8 +88,30 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
         {/* Left: Image */}
         <div style={{ position: 'sticky', top: 120 }}>
           <div style={{ aspectRatio: '4/5', width: '100%' }}>
-             <ImageSlot src={product.image} alt={product.name} label={product.name} dark={dark} />
+             <ImageSlot src={mainImage} alt={product.name} label={product.name} dark={dark} />
           </div>
+          {images.length > 1 && (
+            <div style={{ display: 'flex', gap: 10, marginTop: 12, flexWrap: 'wrap' }}>
+              {images.map((src) => (
+                <button
+                  key={src}
+                  onClick={() => setActiveImage(src)}
+                  aria-label={`Ver foto de ${product.name}`}
+                  style={{
+                    width: 64,
+                    height: 80,
+                    padding: 0,
+                    cursor: 'pointer',
+                    border: `1px solid ${src === mainImage ? '#aa2159' : (dark ? '#333' : '#e6cdd8')}`,
+                    background: 'none',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <img src={src} alt="" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right: Details */}
@@ -84,14 +129,62 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
           </h1>
 
           <div style={{ fontFamily: 'var(--font-serif)', fontSize: 26, color: dark ? '#e6e6e6' : '#aa2159' }}>
-            {product.price}
+            {price}
+            {compareAt && (
+              <span style={{ marginLeft: 14, fontSize: 18, color: dark ? '#888' : '#8a7280', textDecoration: 'line-through' }}>
+                {compareAt}
+              </span>
+            )}
+            {product.discountPct && (
+              <span style={{ marginLeft: 12, fontSize: 12, letterSpacing: '0.12em', fontFamily: 'var(--font-sans)', background: '#aa2159', color: '#fff', padding: '4px 8px', verticalAlign: 'middle' }}>
+                -{product.discountPct}%
+              </span>
+            )}
           </div>
+
+          {product.collection && (
+            <div style={{ fontSize: 11, letterSpacing: '0.2em', color: dark ? '#888' : '#8a5f73' }}>
+              COLECCIÓN {product.collection.toUpperCase()}
+            </div>
+          )}
 
           <p style={{ fontSize: 14, lineHeight: 1.8, color: dark ? '#bbb' : '#5a4450', fontWeight: 300, margin: '10px 0' }}>
             {product.description}
           </p>
 
           <div style={{ borderTop: `1px solid ${dark ? '#333' : '#e6cdd8'}`, margin: '10px 0' }}></div>
+
+          {hasChoice && (
+            <div>
+              <div style={{ fontSize: 11, letterSpacing: '0.15em', marginBottom: 12, color: dark ? '#ccc' : '#4a3742' }}>
+                {variants.some((v) => v.color) ? 'COLOR' : 'VERSIÓN'}: <span style={{ fontWeight: 500 }}>{variant.label.toUpperCase()}</span>
+              </div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {variants.map((v, i) => {
+                  const active = i === variantIdx;
+                  return (
+                    <button
+                      key={v.id}
+                      onClick={() => selectVariant(i)}
+                      style={{
+                        padding: '9px 16px',
+                        fontSize: 11,
+                        letterSpacing: '0.12em',
+                        cursor: 'pointer',
+                        fontFamily: 'var(--font-sans)',
+                        border: `1px solid ${active ? '#aa2159' : (dark ? '#444' : '#e6cdd8')}`,
+                        background: active ? '#aa2159' : 'transparent',
+                        color: active ? '#fff' : (dark ? '#fff' : '#23161c'),
+                      }}
+                    >
+                      {v.label.toUpperCase()}
+                      {v.priceModifier > 0 ? ` (+${formatPrice(v.priceModifier)})` : ''}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Quantity & Stock */}
           <div>
@@ -111,8 +204,8 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
                 <button onClick={handlePlus} style={{ color: dark ? '#fff' : '#000', fontSize: 16 }}>+</button>
               </div>
               
-              <div style={{ fontSize: 12, color: product.stock <= 3 ? '#aa2159' : (dark ? '#888' : '#8a7280') }}>
-                {product.stock <= 3 ? `¡Solo quedan ${product.stock} unidades!` : `${product.stock} disponibles`}
+              <div style={{ fontSize: 12, color: stock <= 3 ? '#aa2159' : (dark ? '#888' : '#8a7280') }}>
+                {stock <= 0 ? 'Disponible a pedido' : stock <= 3 ? `¡Solo quedan ${stock} unidades!` : `${stock} disponibles`}
               </div>
             </div>
           </div>
@@ -145,11 +238,11 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
 
           {/* Accordion mockup */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 30 }}>
-            <Accordion title="Detalles y Materiales" dark={dark}>
-              Baño de oro 18k de 3 micras sobre bronce libre de níquel. Perlas cultivadas de río y cristales facetados de alta calidad.
+            <Accordion title="Hecho a mano y personalización" dark={dark}>
+              Los accesorios hechos a mano son personalizables previa coordinación y se entregan entre dos a tres días hábiles. También puedes solicitar tus accesorios favoritos con postes de plata por un costo adicional.
             </Accordion>
-            <Accordion title="Envíos y Devoluciones" dark={dark}>
-              Envíos a todo el Perú en 2-4 días hábiles. Tienes 7 días para cambios si la pieza no te convence.
+            <Accordion title="Envíos y pagos" dark={dark}>
+              El costo de envío dependerá de tu ubicación. Puedes abonar mediante transferencia bancaria, Yape o Plin. No realizamos reembolsos en accesorios elaborados a pedido o personalizados.
             </Accordion>
           </div>
         </div>

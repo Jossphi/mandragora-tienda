@@ -53,15 +53,18 @@ export const CATEGORIES = [
 ];
 
 // Tab labels mapped to product subsets
-export const TABS = ['NUEVO IN', 'MÁS VENDIDOS', 'SALE'];
+export const TABS = ['NUEVO IN', 'ETERNA MANDRÁGORA', 'SALE'];
 export const TAB_FILTERS = [
-  (p) => p.tag === 'NUEVO',
-  (p) => p.tag === 'BEST',
+  () => true,
+  (p) => Boolean(p.collection),
   (p) => p.tag === 'SALE',
 ];
 
 // Shop filter labels
-export const FILTROS = ['TODO', 'ARETES', 'COLLARES', 'PULSERAS', 'ANILLOS', 'SETS'];
+export const FILTROS = [
+  'TODO', 'ARETES', 'COLLARES', 'CHOKERS', 'PULSERAS', 'SETS',
+  'DIADEMAS', 'NIÑOS Y BEBÉS', 'HOMBRE', 'JOYEROS', 'REGALOS',
+];
 
 // Instagram grid
 export const INSTAGRAM = [1, 2, 3, 4, 5, 6].map((i) => ({

@@ -54,7 +54,7 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
               fontFamily: 'var(--font-sans)',
             }}
           >
-            {product.tag}
+            {product.discountPct ? `-${product.discountPct}%` : product.tag}
           </span>
         )}
 
@@ -109,6 +109,18 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
         }}
       >
         {product.price}
+        {product.compareAtPrice && (
+          <span
+            style={{
+              marginLeft: 10,
+              fontSize: 14,
+              color: dark ? '#888' : '#8a7280',
+              textDecoration: 'line-through',
+            }}
+          >
+            {product.compareAtPrice}
+          </span>
+        )}
       </div>
     </div>
   );
