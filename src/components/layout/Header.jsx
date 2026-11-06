@@ -36,6 +36,20 @@ export default function Header({ cartCount, onNavigate }) {
   const titleA = isColMega ? 'CÁPSULAS' : 'CATEGORÍAS';
   const titleB = isColMega ? 'POR OCASIÓN' : 'COLECCIONES';
   const megaCards = COLLECTIONS.slice(0, 3);
+  const megaTarget = (label) => {
+    const fixed = {
+      'VER TODO': isColMega ? 'colecciones' : 'joyeria',
+      SALE: 'sale',
+      NOVIAS: 'novios',
+      'CALENDARIO SORPRESA': 'product/calendario-sorpresa-doce-dias-doce-tesoros',
+      'SETS PARA PAREJAS': 'joyeria/SETS',
+      REGALOS: 'joyeria/REGALOS',
+    };
+    if (fixed[label]) return fixed[label];
+    const col = COLLECTIONS.find((c) => c.megaLabel === label || c.label.toUpperCase() === label);
+    if (isColMega && col) return col.page;
+    return `joyeria/${label}`;
+  };
 
   return (
     <header
@@ -185,7 +199,7 @@ export default function Header({ cartCount, onNavigate }) {
                 <a
                   key={label}
                   href="#"
-                  onClick={(e) => { e.preventDefault(); onNavigate(isColMega ? 'colecciones' : 'joyeria'); setMegaMenu(null); }}
+                  onClick={(e) => { e.preventDefault(); onNavigate(megaTarget(label)); setMegaMenu(null); }}
                   style={{ color: '#23161c', fontSize: 13, letterSpacing: '0.06em', transition: 'color 200ms' }}
                   onMouseOver={e => e.currentTarget.style.color = '#aa2159'}
                   onMouseOut={e => e.currentTarget.style.color = '#23161c'}
@@ -202,7 +216,7 @@ export default function Header({ cartCount, onNavigate }) {
                 <a
                   key={label}
                   href="#"
-                  onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); setMegaMenu(null); }}
+                  onClick={(e) => { e.preventDefault(); onNavigate(megaTarget(label)); setMegaMenu(null); }}
                   style={{ color: '#23161c', fontSize: 13, letterSpacing: '0.06em', transition: 'color 200ms' }}
                   onMouseOver={e => e.currentTarget.style.color = '#aa2159'}
                   onMouseOut={e => e.currentTarget.style.color = '#23161c'}
@@ -218,7 +232,7 @@ export default function Header({ cartCount, onNavigate }) {
                 <a
                   key={card.id}
                   href="#"
-                  onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); setMegaMenu(null); }}
+                  onClick={(e) => { e.preventDefault(); onNavigate(card.page); setMegaMenu(null); }}
                   style={{ display: 'block', color: '#23161c' }}
                 >
                   <div style={{ position: 'relative', aspectRatio: '4/3' }}>

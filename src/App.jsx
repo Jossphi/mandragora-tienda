@@ -42,6 +42,14 @@ export default function App() {
       case 'login':
         return <LoginPage onNavigate={navigate} />;
       default:
+        if (page.startsWith('joyeria/')) {
+          const filtro = decodeURIComponent(page.slice('joyeria/'.length));
+          return <JoyeriaPage key={page} initialFilter={filtro} onAddToCart={addToCart} onNavigate={navigate} />;
+        }
+        if (page.startsWith('coleccion/')) {
+          const collection = decodeURIComponent(page.slice('coleccion/'.length));
+          return <JoyeriaPage key={page} collection={collection} onAddToCart={addToCart} onNavigate={navigate} />;
+        }
         if (page.startsWith('product/')) {
           const productId = page.split('/')[1];
           return <ProductPage productId={productId} onAddToCart={addToCart} onNavigate={navigate} />;
@@ -49,9 +57,6 @@ export default function App() {
         return <HomePage onNavigate={navigate} onAddToCart={addToCart} />;
     }
   };
-
-  // Novios page has its own dark background; don't show the standard footer bg-margin
-  const isNovios = page === 'novios';
 
   return (
     <div style={{ fontFamily: 'var(--font-sans)', color: '#23161c', background: '#fdf8fa', overflowX: 'hidden' }}>

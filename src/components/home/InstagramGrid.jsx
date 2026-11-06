@@ -23,7 +23,7 @@ export default function InstagramGrid() {
         {INSTAGRAM.map((ig) => (
           <a
             key={ig.id}
-            href="https://instagram.com"
+            href="https://www.instagram.com/mandragora.peru/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'block', aspectRatio: '1', overflow: 'hidden' }}

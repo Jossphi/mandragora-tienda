@@ -55,7 +55,7 @@ export function formatProduct(p) {
   };
 }
 
-export function useProducts({ isNovios = false, category = null, isSale = false } = {}) {
+export function useProducts({ isNovios = false, category = null, isSale = false, collection = null } = {}) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -74,6 +74,10 @@ export function useProducts({ isNovios = false, category = null, isSale = false 
 
         if (isSale) {
           query = query.not('compare_at_price', 'is', null);
+        }
+
+        if (collection) {
+          query = query.eq('collection', collection);
         }
 
         const { data, error } = await query;
@@ -95,7 +99,7 @@ export function useProducts({ isNovios = false, category = null, isSale = false 
     }
 
     fetchProducts();
-  }, [isNovios, category, isSale]);
+  }, [isNovios, category, isSale, collection]);
 
   return { products, loading, error };
 }

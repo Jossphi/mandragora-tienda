@@ -44,12 +44,14 @@ export function getProductById(id) {
 
 // Categories for the circular grid
 export const CATEGORIES = [
-  { label: 'ARETES',    id: 'aretes',    image: '/images/categories/aretes.webp' },
-  { label: 'COLLARES',  id: 'collares',  image: '/images/categories/collares.webp' },
-  { label: 'PULSERAS',  id: 'pulseras',  image: '/images/categories/pulseras.webp' },
-  { label: 'ANILLOS',   id: 'anillos',   image: '/images/categories/anillos.webp' },
-  { label: 'SETS',      id: 'sets',      image: '/images/categories/sets.webp' },
-  { label: 'CHARMS',    id: 'charms',    image: '/images/categories/charms.webp' },
+  { label: 'ARETES',        id: 'aretes',        image: '/images/categories/aretes.webp' },
+  { label: 'COLLARES',      id: 'collares',      image: '/images/categories/collares.webp' },
+  { label: 'CHOKERS',       id: 'chokers',       image: '/images/categories/chokers.webp' },
+  { label: 'PULSERAS',      id: 'pulseras',      image: '/images/categories/pulseras.webp' },
+  { label: 'SETS',          id: 'sets',          image: '/images/categories/sets.webp' },
+  { label: 'DIADEMAS',      id: 'diademas',      image: '/images/categories/diademas.webp' },
+  { label: 'NIÑOS Y BEBÉS', id: 'ninos-y-bebes', image: '/images/categories/ninos-y-bebes.webp' },
+  { label: 'HOMBRE',        id: 'hombre',        image: '/images/categories/hombre.webp' },
 ];
 
 // Tab labels mapped to product subsets
@@ -84,7 +86,7 @@ export const VALORES = [
     text: 'Producimos poco y bien: ediciones numeradas que no se repiten.',
   },
   {
-    title: 'Garantía real',
-    text: 'Un año de garantía sobre el baño y los engastes de toda la joyería.',
+    title: 'A tu medida',
+    text: 'Colores, iniciales y medidas personalizables previa coordinación. También postes de plata.',
   },
 ];

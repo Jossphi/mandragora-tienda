@@ -3,11 +3,11 @@ import { useProducts } from '../hooks/useProducts';
 import FilterBar from '../components/shop/FilterBar';
 import ProductCard from '../components/shop/ProductCard';
 
-export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false }) {
-  const [filtro, setFiltro] = useState('TODO');
-  const { products: visible, loading } = useProducts({ isSale, category: filtro });
+export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false, initialFilter = 'TODO', collection = null }) {
+  const [filtro, setFiltro] = useState(initialFilter);
+  const { products: visible, loading } = useProducts({ isSale, category: filtro, collection });
 
-  const title = isSale ? 'Sale' : 'Joyería';
+  const title = collection ? `Colección ${collection}` : isSale ? 'Sale' : 'Joyería';
 
   return (
     <main
@@ -35,7 +35,13 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false })
         {visible.length} piezas · hechas a mano en Perú
       </p>
 
-      <FilterBar active={filtro} onChange={setFiltro} />
+      {!collection && <FilterBar active={filtro} onChange={setFiltro} />}
+      {collection && (
+        <div style={{ borderTop: '1px solid #f0dde5', marginBottom: 40, paddingTop: 18, fontSize: 13, color: '#5a4450', fontWeight: 300 }}>
+          Parte de la línea Eterna Mandrágora ·{' '}
+          <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); }} style={{ color: '#aa2159' }}>ver todas las colecciones</a>
+        </div>
+      )}
 
       {loading ? (
         <p style={{ textAlign: 'center', marginTop: 40, color: '#aa2159', fontSize: 14 }}>Cargando catálogo...</p>

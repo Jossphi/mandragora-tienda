@@ -9,10 +9,16 @@ export default function CategoryGrid({ onNavigate }) {
       style={{
         maxWidth: 1440,
         margin: '0 auto',
-        padding: '76px 40px 20px',
+        padding: '64px clamp(16px, 3vw, 40px) 10px',
       }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 26 }}>
+      <div style={{ textAlign: 'center', marginBottom: 34 }}>
+        <div style={{ fontSize: '10.5px', letterSpacing: '0.4em', color: '#aa2159' }}>EXPLORA</div>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(30px, 4vw, 42px)', margin: '10px 0 0' }}>
+          Compra por categoría
+        </h2>
+      </div>
+      <div className="category-row">
         {CATEGORIES.map((cat) => (
           <CategoryItem key={cat.id} cat={cat} onNavigate={onNavigate} />
         ))}
@@ -27,7 +33,7 @@ function CategoryItem({ cat, onNavigate }) {
   return (
     <a
       href="#"
-      onClick={(e) => { e.preventDefault(); onNavigate('joyeria'); }}
+      onClick={(e) => { e.preventDefault(); onNavigate(`joyeria/${cat.label}`); }}
       style={{ display: 'block', color: '#23161c', textAlign: 'center' }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
