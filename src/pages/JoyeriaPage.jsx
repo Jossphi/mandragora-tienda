@@ -32,7 +32,7 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false })
       </h1>
 
       <p style={{ fontSize: 14, color: '#5a4450', fontWeight: 300, margin: '0 0 34px' }}>
-        {visible.length} piezas · baño de oro 18k, perla y cristal
+        {visible.length} piezas · hechas a mano en Perú
       </p>
 
       <FilterBar active={filtro} onChange={setFiltro} />

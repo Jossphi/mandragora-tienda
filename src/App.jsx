@@ -28,9 +28,9 @@ export default function App() {
       case 'home':
         return <HomePage onNavigate={navigate} onAddToCart={addToCart} />;
       case 'joyeria':
-        return <JoyeriaPage onAddToCart={addToCart} onNavigate={navigate} />;
+        return <JoyeriaPage key="joyeria" onAddToCart={addToCart} onNavigate={navigate} />;
       case 'sale':
-        return <JoyeriaPage onAddToCart={addToCart} onNavigate={navigate} isSale />;
+        return <JoyeriaPage key="sale" onAddToCart={addToCart} onNavigate={navigate} isSale />;
       case 'colecciones':
         return <ColeccionesPage onNavigate={navigate} />;
       case 'novios':
