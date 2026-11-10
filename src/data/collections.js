@@ -28,8 +28,8 @@ export const COLLECTIONS = [
   },
   {
     id: 'novias',
-    label: 'Novias',
-    desc: 'Peinetas, tocados y chokers de perla personalizados.',
+    label: 'Bride',
+    desc: 'Tocados, peinetas, diademas y detalles para el cabello.',
     image: '/images/collections/novias.webp',
     megaImage: null,
     megaLabel: '',
@@ -41,7 +41,7 @@ export const COLLECTIONS = [
 export const MEGA_JOYERIA_A = ['ARETES', 'COLLARES', 'CHOKERS', 'PULSERAS', 'SETS', 'VER TODO'];
 export const MEGA_JOYERIA_B = ['DIADEMAS', 'NIÑOS Y BEBÉS', 'HOMBRE', 'JOYEROS', 'REGALOS', 'SALE'];
 
-export const MEGA_COLECCIONES_A = ['AMANECER', 'PLENITUD', 'OCASO', 'NOVIAS', 'VER TODO'];
+export const MEGA_COLECCIONES_A = ['AMANECER', 'PLENITUD', 'OCASO', 'BRIDE', 'VER TODO'];
 export const MEGA_COLECCIONES_B = ['CALENDARIO SORPRESA', 'SETS PARA PAREJAS', 'REGALOS', 'SALE'];
 
 // Footer columns
@@ -51,7 +51,7 @@ export const FOOTER_COLS = [
     links: [
       { label: 'Joyería',      page: 'joyeria' },
       { label: 'Colecciones',  page: 'colecciones' },
-      { label: 'Novios',       page: 'novios' },
+      { label: 'Bride',        page: 'novios' },
       { label: 'Sale',         page: 'sale' },
     ],
   },

@@ -86,7 +86,7 @@ export default function Footer({ onNavigate }) {
               MANDRÁGORA
             </div>
             <p style={{ fontSize: '12.5px', lineHeight: 1.9, color: '#6b5460', fontWeight: 300, margin: '14px 0 0', maxWidth: 260 }}>
-              Bijouterie hecha a mano en Perú. Perlas del río, muranos y cristales.
+              Piezas hechas a mano en Perú. Diseños creados cuidadosamente para acompañarte en momentos especiales.
             </p>
           </div>
 

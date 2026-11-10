@@ -40,7 +40,7 @@ export default function Header({ cartCount, onNavigate }) {
     const fixed = {
       'VER TODO': isColMega ? 'colecciones' : 'joyeria',
       SALE: 'sale',
-      NOVIAS: 'novios',
+      BRIDE: 'novios',
       'CALENDARIO SORPRESA': 'product/calendario-sorpresa-doce-dias-doce-tesoros',
       'SETS PARA PAREJAS': 'joyeria/SETS',
       REGALOS: 'joyeria/REGALOS',
@@ -80,7 +80,7 @@ export default function Header({ cartCount, onNavigate }) {
         <nav className="hide-on-mobile" style={{ display: 'flex', gap: 'clamp(12px, 1.5vw, 26px)', alignItems: 'center', flexWrap: 'wrap' }}>
           {navLink('joyeria', 'JOYERÍA')}
           {navLink('colecciones', 'COLECCIONES')}
-          {navLink('novios', 'NOVIOS')}
+          {navLink('novios', 'BRIDE')}
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); onNavigate('sale'); setMegaMenu(null); }}
@@ -120,7 +120,7 @@ export default function Header({ cartCount, onNavigate }) {
             MANDRÁGORA
           </div>
           <div style={{ fontSize: '8.5px', letterSpacing: '0.42em', color: '#aa2159', marginTop: 5, paddingLeft: '0.42em' }}>
-            BIJOUTERIE · PERÚ
+            PERÚ
           </div>
         </a>
 
@@ -256,7 +256,7 @@ export default function Header({ cartCount, onNavigate }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontSize: 16, letterSpacing: '0.1em' }}>
             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('joyeria'); setMobileMenu(false); }}>JOYERÍA</a>
             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('colecciones'); setMobileMenu(false); }}>COLECCIONES</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('novios'); setMobileMenu(false); }}>NOVIOS</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('novios'); setMobileMenu(false); }}>BRIDE</a>
             <a href="#" style={{ color: '#aa2159' }} onClick={(e) => { e.preventDefault(); onNavigate('sale'); setMobileMenu(false); }}>SALE</a>
             <hr style={{ border: 'none', borderTop: '1px solid #eee' }} />
             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('nosotros'); setMobileMenu(false); }}>NOSOTROS</a>

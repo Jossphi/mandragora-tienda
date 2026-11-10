@@ -28,11 +28,11 @@ export default function BrandStatement({ onNavigate }) {
             HECHO A MANO EN PERÚ
           </div>
           <h2 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 'clamp(36px, 5vw, 56px)', lineHeight: 1.05, margin: '16px 0 18px' }}>
-            Piezas que se quedan contigo
+            Piezas hechas para ser parte de tu historia
           </h2>
           <p style={{ maxWidth: 480, fontSize: 15, lineHeight: 1.8, color: '#5a3444', fontWeight: 300, margin: '0 0 14px' }}>
-            Perlas del río, muranos y cristales bordados uno por uno. Cada pieza se elabora a pedido y se personaliza en
-            el color que elijas.
+            Creaciones artesanales elaboradas con materiales cuidadosamente seleccionados y un profundo cuidado por
+            cada detalle.
           </p>
           <p style={{ maxWidth: 480, fontSize: 15, lineHeight: 1.8, color: '#5a3444', fontWeight: 300, margin: '0 0 32px' }}>
             Entregas en 2 a 3 días hábiles, en estuche para proteger tus accesorios. ¿La quieres con postes de plata?

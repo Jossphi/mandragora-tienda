@@ -1,12 +1,12 @@
 export default function MarqueeSection() {
   const items = [
     { type: 'title', text: 'Mandrágora' },
-    { type: 'sub',   text: 'BIJOUTERIE · PERÚ' },
-    { type: 'title', text: 'Joyas con alma' },
+    { type: 'sub',   text: 'JOYERÍA DE AUTOR · PERÚ' },
+    { type: 'title', text: 'Magia en cada detalle' },
     { type: 'sub',   text: 'HECHO A MANO ✦' },
     { type: 'title', text: 'Mandrágora' },
-    { type: 'sub',   text: 'BIJOUTERIE · PERÚ' },
-    { type: 'title', text: 'Joyas con alma' },
+    { type: 'sub',   text: 'JOYERÍA DE AUTOR · PERÚ' },
+    { type: 'title', text: 'Magia en cada detalle' },
     { type: 'sub',   text: 'HECHO A MANO ✦' },
   ];
 
