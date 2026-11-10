@@ -1,8 +1,10 @@
 export default function AnnouncementBar() {
   const items = [
     '✦ TIENDA OFICIAL MANDRÁGORA ✦',
-    'ENVÍOS GRATIS DESDE S/ 300',
-    '3 CUOTAS SIN INTERESES',
+    'HECHO A MANO EN PERÚ',
+    'PIEZAS PERSONALIZABLES A PEDIDO',
+    'PAGA CON YAPE, PLIN O TRANSFERENCIA',
+    'CALENDARIO SORPRESA · EDICIÓN LIMITADA',
     'NUEVA COLECCIÓN BRIDE',
   ];
   // Duplicate for seamless loop
