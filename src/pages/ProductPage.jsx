@@ -120,7 +120,7 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
           {/* Breadcrumbs */}
           <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: dark ? '#888' : '#8a5f73' }}>
             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }} style={{ color: 'inherit' }}>INICIO</a> / 
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(dark ? 'novios' : 'joyeria'); }} style={{ color: 'inherit' }}> {dark ? 'NOVIOS' : 'JOYERÍA'}</a> / 
+            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(dark ? 'novios' : 'joyeria'); }} style={{ color: 'inherit' }}> {dark ? 'BRIDE' : 'JOYERÍA'}</a> / 
             <span> {product.name}</span>
           </div>
 

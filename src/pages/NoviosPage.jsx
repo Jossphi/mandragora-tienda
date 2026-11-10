@@ -1,6 +1,14 @@
 import { useProducts } from '../hooks/useProducts';
 import ProductCard from '../components/shop/ProductCard';
 
+// Shown while the Bride line has no products loaded in the store yet.
+const BRIDE_GALLERY = [
+  '/images/hero/novias-1.webp',
+  '/images/editorial/novios-editorial.webp',
+  '/images/collections/novias.webp',
+  '/images/hero/novias-2.webp',
+];
+
 export default function NoviosPage({ onAddToCart, onNavigate }) {
   const { products: novios, loading } = useProducts({ isNovios: true });
 
@@ -15,22 +23,22 @@ export default function NoviosPage({ onAddToCart, onNavigate }) {
         }}
       >
         <div style={{ fontSize: '10.5px', letterSpacing: '0.44em', color: '#a8a8a8' }}>
-          MANDRÁGORA NOVIOS
+          MANDRÁGORA BRIDE
         </div>
         <h1
           style={{
             fontFamily: 'var(--font-serif)',
             fontWeight: 300,
-            fontSize: 96,
+            fontSize: 'clamp(44px, 7vw, 88px)',
             lineHeight: 1,
             margin: '26px 0 20px',
             letterSpacing: '0.01em',
           }}
         >
-          Blanco y negro
+          Piezas para el día que soñaste
         </h1>
         <p style={{ maxWidth: 540, margin: '0 auto', fontSize: 15, lineHeight: 1.8, color: '#b5b5b5', fontWeight: 300 }}>
-          Sin color, sin ruido. Perla, cristal y metal para la novia, las damas y el novio.
+          Diseños creados a mano para acompañarte en uno de los días más especiales de tu historia. Tocados, peinetas, diademas y detalles para el cabello, creados cuidadosamente para complementar tu esencia.
         </p>
       </section>
 
@@ -38,10 +46,18 @@ export default function NoviosPage({ onAddToCart, onNavigate }) {
       <section style={{ maxWidth: 1440, margin: '0 auto', padding: '80px 40px 0' }}>
         {loading ? (
           <p style={{ textAlign: 'center', color: '#888' }}>Cargando catálogo nupcial...</p>
-        ) : (
+        ) : novios.length > 0 ? (
           <div className="grid-cols-3">
             {novios.map((n) => (
               <ProductCard key={n.id} product={n} onAddToCart={onAddToCart} onNavigate={onNavigate} dark />
+            ))}
+          </div>
+        ) : (
+          <div className="grid-cols-4">
+            {BRIDE_GALLERY.map((src) => (
+              <div key={src} style={{ aspectRatio: '3/4', overflow: 'hidden' }}>
+                <img src={src} alt="Mandrágora Bride" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
             ))}
           </div>
         )}

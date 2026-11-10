@@ -3,7 +3,7 @@ export default function AnnouncementBar() {
     '✦ TIENDA OFICIAL MANDRÁGORA ✦',
     'ENVÍOS GRATIS DESDE S/ 300',
     '3 CUOTAS SIN INTERESES',
-    'NUEVA COLECCIÓN NOVIOS',
+    'NUEVA COLECCIÓN BRIDE',
   ];
   // Duplicate for seamless loop
   const all = [...items, ...items];

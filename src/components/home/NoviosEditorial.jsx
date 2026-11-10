@@ -11,8 +11,8 @@ export default function NoviosEditorial({ onNavigate }) {
         <div style={{ aspectRatio: '4/5', maxHeight: 640, overflow: 'hidden' }}>
           <ImageSlot
             src="/images/editorial/novios-editorial.webp"
-            alt="Editorial novia"
-            label="Novias Mandrágora"
+            alt="Mandrágora Bride"
+            label="Mandrágora Bride"
             dark
           />
         </div>
@@ -20,7 +20,7 @@ export default function NoviosEditorial({ onNavigate }) {
         {/* Text */}
         <div>
           <div style={{ fontSize: '10.5px', letterSpacing: '0.4em', color: '#cfcfcf' }}>
-            MANDRÁGORA NOVIAS
+            MANDRÁGORA BRIDE
           </div>
           <h2
             style={{
@@ -32,7 +32,7 @@ export default function NoviosEditorial({ onNavigate }) {
               letterSpacing: '0.02em',
             }}
           >
-            Para el día del sí
+            Piezas para el día que soñaste
           </h2>
           <p
             style={{
@@ -43,8 +43,20 @@ export default function NoviosEditorial({ onNavigate }) {
               maxWidth: 460,
             }}
           >
-            Peinetas, tocados, chokers y pulseras de perla y cristal, diseñados contigo y hechos a mano
-            a la medida de tu peinado y tu vestido.
+            Diseños creados a mano para acompañarte en uno de los días más especiales de tu historia.
+          </p>
+          <p
+            style={{
+              fontSize: 15,
+              lineHeight: 1.8,
+              color: '#bdbdbd',
+              fontWeight: 300,
+              maxWidth: 460,
+              marginTop: 14,
+            }}
+          >
+            Tocados, peinetas, diademas y detalles para el cabello, creados cuidadosamente para complementar tu
+            esencia y hacer de cada instante algo tuyo.
           </p>
           <button
             onClick={() => onNavigate('novios')}
@@ -64,7 +76,7 @@ export default function NoviosEditorial({ onNavigate }) {
             onMouseOver={e => { e.currentTarget.style.background = '#ecc0d1'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
             onMouseOut={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.transform = 'none'; }}
           >
-            VER NOVIAS
+            DESCUBRIR BRIDE
           </button>
         </div>
       </div>
