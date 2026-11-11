@@ -1,5 +1,7 @@
-import { useState } from 'react';
-import { useCart } from './hooks/useCart';
+import { useState, useCallback } from 'react';
+import { useCart } from './context/CartContext';
+import { useAuth } from './context/AuthContext';
+import CartToast from './components/shop/CartToast';
 
 import AnnouncementBar from './components/layout/AnnouncementBar';
 import Header from './components/layout/Header';
@@ -13,15 +15,20 @@ import NosotrosPage from './pages/NosotrosPage';
 import ContactoPage from './pages/ContactoPage';
 import ProductPage from './pages/ProductPage';
 import LoginPage from './pages/LoginPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import AccountPage from './pages/AccountPage';
+import OrderPage from './pages/OrderPage';
 
 export default function App() {
   const [page, setPage] = useState('home');
-  const [cartCount, addToCart] = useCart();
+  const { count: cartCount, addToCart } = useCart();
+  const { recovering, endRecovery } = useAuth();
 
-  const navigate = (to) => {
+  const navigate = useCallback((to) => {
     setPage(to);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
   const renderPage = () => {
     switch (page) {
@@ -39,9 +46,21 @@ export default function App() {
         return <NosotrosPage />;
       case 'contacto':
         return <ContactoPage />;
+      case 'cart':
+        return <CartPage onNavigate={navigate} />;
+      case 'checkout':
+        return <CheckoutPage onNavigate={navigate} />;
+      case 'account':
+        return <AccountPage onNavigate={navigate} />;
       case 'login':
-        return <LoginPage onNavigate={navigate} />;
+        return <LoginPage key="login" onNavigate={navigate} />;
       default:
+        if (page.startsWith('login?next=')) {
+          return <LoginPage key={page} onNavigate={navigate} next={page.slice('login?next='.length)} />;
+        }
+        if (page.startsWith('order/')) {
+          return <OrderPage orderId={page.slice('order/'.length)} onNavigate={navigate} />;
+        }
         if (page.startsWith('joyeria/')) {
           const filtro = decodeURIComponent(page.slice('joyeria/'.length));
           return <JoyeriaPage key={page} initialFilter={filtro} onAddToCart={addToCart} onNavigate={navigate} />;
@@ -62,7 +81,10 @@ export default function App() {
     <div style={{ fontFamily: 'var(--font-sans)', color: '#23161c', background: '#fdf8fa', overflowX: 'hidden' }}>
       <AnnouncementBar />
       <Header cartCount={cartCount} onNavigate={navigate} />
-      {renderPage()}
+      {recovering ? (
+        <LoginPage key="reset" initialMode="reset" onNavigate={(to) => { endRecovery(); navigate(to); }} />
+      ) : renderPage()}
+      <CartToast onNavigate={navigate} />
       <Footer onNavigate={navigate} />
     </div>
   );

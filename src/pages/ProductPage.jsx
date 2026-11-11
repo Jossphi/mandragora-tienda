@@ -212,11 +212,8 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
 
           {/* Add to Cart */}
           <button
-            onClick={() => {
-              for (let i = 0; i < qty; i++) {
-                onAddToCart();
-              }
-            }}
+            onClick={() => onAddToCart(product, variant, qty)}
+            disabled={stock <= 0}
             style={{
               background: dark ? '#fff' : '#23161c',
               color: dark ? '#0c0c0c' : '#fff',
