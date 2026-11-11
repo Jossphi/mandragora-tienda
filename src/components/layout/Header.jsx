@@ -150,7 +150,7 @@ export default function Header({ cartCount, onNavigate }) {
 
           <a
             href="#"
-            onClick={(e) => { e.preventDefault(); }}
+            onClick={(e) => { e.preventDefault(); onNavigate('cart'); setMegaMenu(null); }}
             style={{ color: '#23161c', display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}
           >
             CARRITO

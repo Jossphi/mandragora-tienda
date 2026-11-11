@@ -60,7 +60,16 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
 
         {/* Add to cart overlay */}
         <button
-          onClick={onAddToCart}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Products with colors/versions need a choice first.
+            if ((product.variants?.length || 0) > 1) {
+              if (onNavigate) onNavigate(`product/${product.id}`);
+            } else if (onAddToCart) {
+              onAddToCart(product);
+            }
+          }}
           style={{
             position: 'absolute',
             left: 0,
@@ -79,7 +88,7 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
             fontFamily: 'var(--font-sans)',
           }}
         >
-          AÑADIR AL CARRITO
+          {(product.variants?.length || 0) > 1 ? 'ELEGIR OPCIÓN' : 'AÑADIR AL CARRITO'}
         </button>
       </a>
 
