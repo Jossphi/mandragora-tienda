@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ImageSlot from '../ui/ImageSlot';
+import { pageToPath } from '../../lib/routes';
 
 export default function ProductCard({ product, onAddToCart, onNavigate, dark = false }) {
   const [hovered, setHovered] = useState(false);
@@ -18,8 +19,9 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
     >
       {/* Image wrapper */}
       <a
-        href="#"
+        href={pageToPath(`product/${product.id}`)}
         onClick={(e) => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // open in new tab
           e.preventDefault();
           if (onNavigate) onNavigate(`product/${product.id}`);
         }}
@@ -94,8 +96,9 @@ export default function ProductCard({ product, onAddToCart, onNavigate, dark = f
 
       {/* Name */}
       <a
-        href="#"
+        href={pageToPath(`product/${product.id}`)}
         onClick={(e) => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // open in new tab
           e.preventDefault();
           if (onNavigate) onNavigate(`product/${product.id}`);
         }}

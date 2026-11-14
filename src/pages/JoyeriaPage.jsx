@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import { useProducts } from '../hooks/useProducts';
 import FilterBar from '../components/shop/FilterBar';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
+import { pageToPath } from '../lib/routes';
 import ProductCard from '../components/shop/ProductCard';
 
 export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false, initialFilter = 'TODO', collection = null }) {
   const [filtro, setFiltro] = useState(initialFilter);
   const { products: visible, loading } = useProducts({ isSale, category: filtro, collection });
+
+  // Keep the URL in sync with the chosen category so it can be shared.
+  const changeFilter = (f) => {
+    setFiltro(f);
+    if (!isSale) {
+      window.history.replaceState({}, '', pageToPath(f === 'TODO' ? 'joyeria' : `joyeria/${f}`));
+    }
+  };
 
   const title = collection ? `Colección ${collection}` : isSale ? 'Sale' : 'Joyería';
 
@@ -14,10 +24,19 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false, i
       className="page-enter"
       style={{ maxWidth: 1440, margin: '0 auto', padding: '56px 40px 0' }}
     >
-      {/* Breadcrumb */}
-      <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#8a5f73' }}>
-        INICIO / {title.toUpperCase()}
-      </div>
+      <Breadcrumbs
+        onNavigate={onNavigate}
+        items={[
+          { label: 'Inicio', page: 'home' },
+          ...(collection
+            ? [{ label: 'Colecciones', page: 'colecciones' }, { label: collection }]
+            : isSale
+              ? [{ label: 'Sale' }]
+              : filtro !== 'TODO'
+                ? [{ label: 'Joyería', page: 'joyeria' }, { label: filtro }]
+                : [{ label: 'Joyería' }]),
+        ]}
+      />
 
       {/* Title */}
       <h1
@@ -35,7 +54,7 @@ export default function JoyeriaPage({ onAddToCart, onNavigate, isSale = false, i
         {visible.length} piezas · hechas a mano en Perú
       </p>
 
-      {!collection && <FilterBar active={filtro} onChange={setFiltro} />}
+      {!collection && <FilterBar active={filtro} onChange={changeFilter} />}
       {collection && (
         <div style={{ borderTop: '1px solid #f0dde5', marginBottom: 40, paddingTop: 18, fontSize: 13, color: '#5a4450', fontWeight: 300 }}>
           Parte de la línea Eterna Mandrágora ·{' '}

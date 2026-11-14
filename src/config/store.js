@@ -18,3 +18,9 @@ export const PAYMENT_METHODS = [
 ];
 
 export const getPaymentMethod = (id) => PAYMENT_METHODS.find((m) => m.id === id);
+
+// Social networks.
+export const SOCIAL = {
+  instagram: { label: 'Instagram', handle: '@mandragora.peru', url: 'https://www.instagram.com/mandragora.peru/' },
+  tiktok: { label: 'TikTok', handle: '@mandragoraperu', url: 'https://www.tiktok.com/@mandragoraperu' },
+};
