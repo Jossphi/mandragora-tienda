@@ -2,6 +2,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { formatPrice } from '../hooks/useProducts';
 import { primaryButton, secondaryButton, pageTitle } from '../components/ui/formStyles';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 
 export default function CartPage({ onNavigate }) {
   const { items, subtotal, setQty, removeItem, loading } = useCart();
@@ -11,7 +12,7 @@ export default function CartPage({ onNavigate }) {
 
   return (
     <main className="page-enter" style={{ maxWidth: 1180, margin: '0 auto', padding: '56px clamp(16px, 4vw, 40px) 40px' }}>
-      <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#8a5f73' }}>INICIO / CARRITO</div>
+      <Breadcrumbs onNavigate={onNavigate} items={[{ label: 'Inicio', page: 'home' }, { label: 'Carrito' }]} />
       <h1 style={{ ...pageTitle, margin: '14px 0 30px' }}>Tu carrito</h1>
 
       {loading && items.length === 0 ? (

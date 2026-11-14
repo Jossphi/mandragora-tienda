@@ -26,7 +26,7 @@ export default function LoginPage({ onNavigate, next = 'account', initialMode = 
       if (mode === 'login') {
         const { error } = await supabase.auth.signInWithPassword({ email: form.email.trim(), password: form.password });
         if (error) throw error;
-        onNavigate(next);
+        onNavigate(next, { replace: true });
       } else if (mode === 'register') {
         const { data, error } = await supabase.auth.signUp({
           email: form.email.trim(),
@@ -38,7 +38,7 @@ export default function LoginPage({ onNavigate, next = 'account', initialMode = 
         });
         if (error) throw error;
         if (data.session) {
-          onNavigate(next);
+          onNavigate(next, { replace: true });
         } else {
           setMessage({ type: 'success', text: `¡Cuenta creada! Te enviamos un correo a ${form.email.trim()} para confirmarla. Luego inicia sesión.` });
           setMode('login');

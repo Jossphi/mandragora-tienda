@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { formatPrice } from '../hooks/useProducts';
 import { getPaymentMethod } from '../config/store';
 import { primaryButton, secondaryButton, alertStyle, pageTitle } from '../components/ui/formStyles';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 
 const ORDER_SELECT = `
   id, order_number, created_at, payment_method, payment_receipt_url, subtotal, shipping_cost, total_amount, shipping_address,
@@ -27,7 +28,7 @@ export default function OrderPage({ orderId, onNavigate }) {
 
   useEffect(() => {
     if (authLoading) return;
-    if (!user) { onNavigate(`login?next=order/${orderId}`); return; }
+    if (!user) { onNavigate(`login?next=order/${orderId}`, { replace: true }); return; }
     load();
   }, [authLoading, user, orderId, load, onNavigate]);
 
@@ -82,7 +83,7 @@ export default function OrderPage({ orderId, onNavigate }) {
 
   return (
     <main className="page-enter" style={{ maxWidth: 1080, margin: '0 auto', padding: '56px clamp(16px, 4vw, 40px) 40px' }}>
-      <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#8a5f73' }}>MI CUENTA / PEDIDO</div>
+      <Breadcrumbs onNavigate={onNavigate} items={[{ label: 'Inicio', page: 'home' }, { label: 'Mi cuenta', page: 'account' }, { label: `Pedido #${order.order_number}` }]} />
       <h1 style={{ ...pageTitle, margin: '14px 0 6px' }}>Pedido #{order.order_number}</h1>
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 34 }}>
         <StatusBadge status={status} />

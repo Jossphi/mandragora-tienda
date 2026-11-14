@@ -1,4 +1,5 @@
 import { FOOTER_COLS } from '../../data/collections';
+import SocialIcons from '../ui/SocialIcons';
 
 export default function Footer({ onNavigate }) {
   return (
@@ -88,6 +89,9 @@ export default function Footer({ onNavigate }) {
             <p style={{ fontSize: '12.5px', lineHeight: 1.9, color: '#6b5460', fontWeight: 300, margin: '14px 0 0', maxWidth: 260 }}>
               Piezas hechas a mano en Perú. Diseños creados cuidadosamente para acompañarte en momentos especiales.
             </p>
+            <div style={{ marginTop: 18 }}>
+              <SocialIcons color="#5a4450" />
+            </div>
           </div>
 
           {/* Link columns */}
@@ -132,11 +136,7 @@ export default function Footer({ onNavigate }) {
           }}
         >
           <span>MANDRÁGORA 2026 ©</span>
-          <span style={{ display: 'flex', gap: 20 }}>
-            <a href="#" style={{ color: '#8a7280' }}>INSTAGRAM</a>
-            <a href="#" style={{ color: '#8a7280' }}>TIKTOK</a>
-            <a href="#" style={{ color: '#8a7280' }}>WHATSAPP</a>
-          </span>
+          <SocialIcons variant="text" gap={22} />
         </div>
       </footer>
     </>

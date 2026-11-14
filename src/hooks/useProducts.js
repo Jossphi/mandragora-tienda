@@ -118,10 +118,10 @@ export function useProduct(slug) {
           .select(PRODUCT_SELECT)
           .eq('slug', slug)
           .eq('is_active', true)
-          .single();
+          .maybeSingle();
 
         if (error) throw error;
-        setProduct(formatProduct(data));
+        setProduct(data ? formatProduct(data) : null);
       } catch (err) {
         console.error('Error fetching product details:', err);
         setProduct(null);

@@ -5,6 +5,7 @@ import { formatPrice } from '../hooks/useProducts';
 import { getPaymentMethod } from '../config/store';
 import { StatusBadge } from './OrderPage';
 import { labelStyle, inputStyle, primaryButton, secondaryButton, alertStyle, pageTitle } from '../components/ui/formStyles';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 
 export default function AccountPage({ onNavigate }) {
   const { user, profile, loading: authLoading, refreshProfile, signOut } = useAuth();
@@ -14,7 +15,7 @@ export default function AccountPage({ onNavigate }) {
   const [msg, setMsg] = useState(null);
 
   useEffect(() => {
-    if (!authLoading && !user) onNavigate('login?next=account');
+    if (!authLoading && !user) onNavigate('login?next=account', { replace: true });
   }, [authLoading, user, onNavigate]);
 
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function AccountPage({ onNavigate }) {
 
   return (
     <main className="page-enter" style={{ maxWidth: 1180, margin: '0 auto', padding: '56px clamp(16px, 4vw, 40px) 40px' }}>
-      <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#8a5f73' }}>INICIO / MI CUENTA</div>
+      <Breadcrumbs onNavigate={onNavigate} items={[{ label: 'Inicio', page: 'home' }, { label: 'Mi cuenta' }]} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 16, flexWrap: 'wrap', margin: '14px 0 34px' }}>
         <h1 style={{ ...pageTitle, margin: 0 }}>Hola{profile?.full_name ? `, ${profile.full_name.split(' ')[0]}` : ''}</h1>
         <button onClick={logout} style={secondaryButton}>CERRAR SESIÓN</button>

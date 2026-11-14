@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { pageToPath, pathToPage } from './lib/routes';
 import { useCart } from './context/CartContext';
 import { useAuth } from './context/AuthContext';
 import CartToast from './components/shop/CartToast';
@@ -21,14 +22,31 @@ import AccountPage from './pages/AccountPage';
 import OrderPage from './pages/OrderPage';
 
 export default function App() {
-  const [page, setPage] = useState('home');
+  // The current page comes from the URL, so links can be shared and reloaded.
+  const [page, setPage] = useState(() => pathToPage(window.location.pathname, window.location.search));
   const { count: cartCount, addToCart } = useCart();
   const { recovering, endRecovery } = useAuth();
 
-  const navigate = useCallback((to) => {
-    setPage(to);
+  const navigate = useCallback((to, { replace = false } = {}) => {
+    const path = pageToPath(to);
+    if (path !== window.location.pathname + window.location.search) {
+      window.history[replace ? 'replaceState' : 'pushState']({}, '', path);
+    }
+    setPage(pathToPage(window.location.pathname, window.location.search));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Browser back/forward buttons.
+  useEffect(() => {
+    const onPop = () => setPage(pathToPage(window.location.pathname, window.location.search));
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  // Default tab title for pages that don't set their own.
+  useEffect(() => {
+    if (!page.startsWith('product/')) document.title = 'Mandrágora · Joyería de autor · Perú';
+  }, [page]);
 
   const renderPage = () => {
     switch (page) {

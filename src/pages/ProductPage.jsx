@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useProduct, formatPrice } from '../hooks/useProducts';
 import ImageSlot from '../components/ui/ImageSlot';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
+import { pageUrl } from '../lib/routes';
 
 export default function ProductPage({ productId, onAddToCart, onNavigate }) {
   const [qty, setQty] = useState(1);
   const [variantIdx, setVariantIdx] = useState(0);
   const [activeImage, setActiveImage] = useState(null);
+  const [copied, setCopied] = useState(false);
   const { product, loading } = useProduct(productId);
 
   useEffect(() => {
@@ -13,6 +16,30 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
     setVariantIdx(0);
     setActiveImage(null);
   }, [productId]);
+
+  // Tab title and description of this product (also used when sharing).
+  useEffect(() => {
+    if (!product) return;
+    document.title = `${product.name} · Mandrágora`;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta && product.description) meta.setAttribute('content', product.description);
+  }, [product]);
+
+  const shareLink = async () => {
+    const url = pageUrl(`product/${productId}`);
+    // Phones: open the native share sheet (WhatsApp, Instagram...). Desktop: copy.
+    if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
+      try { await navigator.share({ title: product.name, url }); return; } catch { /* cancelled */ }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      window.prompt('Copia este enlace:', url);
+      return;
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   if (loading) {
     return (
@@ -117,12 +144,17 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
         {/* Right: Details */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24, paddingTop: 20 }}>
           
-          {/* Breadcrumbs */}
-          <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: dark ? '#888' : '#8a5f73' }}>
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home'); }} style={{ color: 'inherit' }}>INICIO</a> / 
-            <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(dark ? 'novios' : 'joyeria'); }} style={{ color: 'inherit' }}> {dark ? 'BRIDE' : 'JOYERÍA'}</a> / 
-            <span> {product.name}</span>
-          </div>
+          <Breadcrumbs
+            dark={dark}
+            onNavigate={onNavigate}
+            items={[
+              { label: 'Inicio', page: 'home' },
+              dark ? { label: 'Bride', page: 'novios' } : { label: 'Joyería', page: 'joyeria' },
+              ...(!dark && product.cat ? [{ label: product.cat, page: `joyeria/${product.cat}` }] : []),
+              ...(product.collection ? [{ label: `Colección ${product.collection}`, page: `coleccion/${product.collection}` }] : []),
+              { label: product.name },
+            ]}
+          />
 
           <h1 style={{ fontFamily: 'var(--font-serif)', fontWeight: 400, fontSize: 46, margin: 0 }}>
             {product.name}
@@ -231,6 +263,30 @@ export default function ProductPage({ productId, onAddToCart, onNavigate }) {
             onMouseOut={e => e.currentTarget.style.background = dark ? '#fff' : '#23161c'}
           >
             AÑADIR AL CARRITO
+          </button>
+
+          <button
+            onClick={shareLink}
+            style={{
+              alignSelf: 'flex-start',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              background: 'none',
+              border: 'none',
+              padding: '4px 0',
+              cursor: 'pointer',
+              fontSize: 11,
+              letterSpacing: '0.18em',
+              color: copied ? '#137a4b' : (dark ? '#ccc' : '#8a5f73'),
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            {copied ? '¡ENLACE COPIADO!' : 'COPIAR ENLACE DEL PRODUCTO'}
           </button>
 
           {/* Accordion mockup */}

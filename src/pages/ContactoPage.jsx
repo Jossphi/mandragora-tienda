@@ -1,3 +1,4 @@
+import { SOCIAL } from '../config/store';
 export default function ContactoPage() {
   return (
     <main className="page-enter" style={{ maxWidth: 1100, margin: '0 auto', padding: '76px 40px 0' }}>
@@ -88,7 +89,17 @@ export default function ContactoPage() {
           <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#aa2159', marginBottom: 14 }}>
             WHATSAPP
           </div>
-          +51 999 888 777
+          +51 999 888 777<br /><br />
+
+          <div style={{ fontSize: '10.5px', letterSpacing: '0.3em', color: '#aa2159', marginBottom: 14 }}>
+            REDES
+          </div>
+          {Object.values(SOCIAL).map((sn) => (
+            <div key={sn.url}>
+              {sn.label}:{' '}
+              <a href={sn.url} target="_blank" rel="noopener noreferrer" style={{ color: '#aa2159' }}>{sn.handle}</a>
+            </div>
+          ))}
         </div>
       </div>
     </main>
